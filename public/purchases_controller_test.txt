@@ -1,0 +1,23 @@
+Guide to purchases_controller_test:
+
+In this application, purchases_controller and purchases model (purchase.rb) work closely together to authorise and complete payment through Stripe.
+I require Stripe gem to register some user fixtures with Stripe since, the purchases controller and model work slightly differently with customers who are registered with Stripe. 
+
+Throughout the tests that use Stripe methods and objects (such as mock customers and tokens), I set user(:one) as the seller. 
+Since the seller must be registered with Stripe to advertise and sell any merchandise on the application, I assigned a stripeid to this user(:one) in the fixtures to avoid redundant code.
+Therefore, everytime I use @seller in my tests, it should be understood from the code in fixtures that this fixture is already registered with Stripe. 
+
+In different tests, I use differet users fixtures as @purchaser who can either make donation or purchase.  
+Different sections of the code run depending on if the customer is not signed in, is signed in but is not registered with Stripe, or is signed in and is registered with Stripe.
+Also, the part of code that handles purchases of merchandises is different from the code that handles donations.
+Throughout the different tests, I have attempted to cover all posstibe combinations of scenarios that I could come up with. 
+For example, in test "to create a donation for customer who is registered with Stripe and whose email is posted" (line 130), @purchaser(who is registered with Stripe) is signed in to make a donation of $10 to @seller.
+After reading the controller and model one can find that if @purchaser is not signed in, an email and card details must be provided for the payment to successfully go through. 
+If @purchaser is signed in but has not registered his/her card with Stripe, he/she must provide card details to complete the purchase. 
+If @purchaser is signed in and has registered his/her card with Stripe, he/she does not need to provide card details. Their card details are retrieved by Stripe itself from its database and is used to complete the payment.
+Therefore, in the tests in which I create Stripe token for @purchaser, I attempt to mock a scenario in which the purchaser also has a Stripe account. (Both @seller and @purchaser have stripeids in those scenarios.)
+The parameters which are passed to the method determine which part of the code is executed to mock a particular scenario to make payment.
+
+Since the controller and model work very closely to establish payments, I have used many puts statements throughout my tests and in the controller and model to track the flow of test data that will be printed on the terminal where the tests are run.
+The save_with_payment method that is often mentioned in the controller is actually in the purchases model that works on the business logic of purchases. 
+The put statements can be tracted back and forth in the purchases controller, model and the tests, which will allow you to see exactly which lines of code and if/else branches are covered in which scenario. 
