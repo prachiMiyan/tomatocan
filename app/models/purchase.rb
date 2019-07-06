@@ -53,7 +53,8 @@ class Purchase < ApplicationRecord
           groupstripeaccount = Stripe::Account.retrieve(group.stripeid)
         end%
 
-    if self.email.present?
+
+    if self.email.present? #i.e. no user is signed in, therefore prompted for email address
       puts "15x" ##########
       #
       customer = Stripe::Customer.create(
@@ -62,7 +63,7 @@ class Purchase < ApplicationRecord
         :email => self.email
       )
       puts customer.id ###########
-      puts customer.email
+      puts customer.email ## email receipt
 
     else
       puts "16x" ##########
@@ -95,7 +96,8 @@ class Purchase < ApplicationRecord
         :amount => amt,
         :currency => "usd",
         :customer => customer.id,
-        :description => desc
+        :description => desc,
+        :receipt_email => customer.email
       })
     else
       puts "20x" ##########
@@ -118,6 +120,7 @@ class Purchase < ApplicationRecord
         :description => desc,
         :application_fee => appfee,  #this is amt crowdpublishtv keeps - it includes groupcut since group gets paid some time later
         #        :transfer_group => transfergrp
+        :receipt_email => customer.email
       } ,
       {:stripe_account => sellerstripeaccount.id } #appfee only needed for old way of 1 connected acct per transaction
                                     )

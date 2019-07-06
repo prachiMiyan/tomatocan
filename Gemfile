@@ -4,7 +4,7 @@ ruby "2.5.1"
 gem 'listen'
 gem 'rails-controller-testing'
 #gem 'capybara-screenshot', :group => :test
-
+gem 'postmark-rails'
 
 
 #gem 'pg'
