@@ -102,8 +102,9 @@ class PurchasesController < ApplicationController
           end
           if @purchase.save_with_payment
             puts "7" ################################################
+            render :receipt
             seller = User.find(@merchandise.user_id)
-            redirect_to user_profile_path(seller.permalink)
+            #redirect_to user_profile_path(seller.permalink)
             flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + seller.name
           else
             puts "8" ################################################
