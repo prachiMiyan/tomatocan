@@ -33,6 +33,10 @@ class PurchasesController < ApplicationController
         end
       end
     end
+
+    def receipt
+    end
+
     # POST /purchases 
     def create
       @purchase = Purchase.new(purchase_params)
@@ -103,7 +107,7 @@ class PurchasesController < ApplicationController
           if @purchase.save_with_payment
             puts "7" ################################################
             seller = User.find(@merchandise.user_id)
-            render :receipt, :locals => {:seller_name => seller.name}
+            render :receipt
             #redirect_to user_profile_path(seller.permalink)
             flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + seller.name
           else

@@ -4,8 +4,25 @@
             <h1>Receipt</h1>
         </header>
         <main class="mainPart">
-            <p>Payment confirmation _____________________________________________________</p>
-            <p>Date: <script> document.write(new Date().toLocaleDateString()); </script></p>
+            <p>Payment confirmation for <Merchandise name> sold by <seller name<link to seller permalink>>_____________________________________________________</p>
+            <table>
+                <tr>
+                    <td>Date:   </td> 
+                    <td><%= Date.today %></td>
+                </tr>
+                <tr>
+                    <td>Customer name: </td>
+                    <td>@purchaser.user_id</td>
+                </tr>
+                <tr>
+                    <td>Card ending in: </td>
+                    <td>last 4 digits</td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td>price of the item</td>
+                </tr>
+            </table>
         </main>
     </body>
 </div>
