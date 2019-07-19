@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "2.5.3"
+ruby "2.5.1"
 
 gem 'listen'
 gem 'rails-controller-testing'
@@ -58,7 +58,7 @@ end
 group :production do
      #rake db:create:all
      #rails s -e production
-     #gem 'sqlite3-ruby', :require => 'sqlite3'
+     gem 'sqlite3', '~> 1.3.6'
   gem 'rails_12factor'
 end
 

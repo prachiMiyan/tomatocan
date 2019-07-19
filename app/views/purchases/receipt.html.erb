@@ -4,7 +4,7 @@
             <h1>Receipt</h1>
         </header>
         <main class="mainPart">
-            <p>Payment confirmation for <Merchandise name> sold by <seller name<link to seller permalink>>_____________________________________________________</p>
+            <p>Payment confirmation for <%= @merchandise.name %> sold by <%= @seller.name%>_____________________________________________________</p>
             <table>
                 <tr>
                     <td>Date:   </td> 
@@ -12,15 +12,15 @@
                 </tr>
                 <tr>
                     <td>Customer name: </td>
-                    <td>@purchaser.user_id</td>
+                    <td><%= @buyer.name %></td>
                 </tr>
                 <tr>
                     <td>Card ending in: </td>
-                    <td>last 4 digits</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Price</td>
-                    <td>price of the item</td>
+                    <td>$<%= @purchase.pricesold %></td>
                 </tr>
             </table>
         </main>

@@ -35,6 +35,17 @@ class PurchasesController < ApplicationController
     end
 
     def receipt
+      @purchase = Purchase.find(params[:id])
+      if (!@purchase.merchandise_id.nil?)
+        id_merch=@purchase.merchandise_id
+        @merch = Merchandise.find(params[:id_merch])
+        @buyer = User.find(@purchase.user_id)
+        @seller = User.find(@purchase.author_id)
+      end
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
+      sourceid = customer.default_source
+      card = customer.sources.retrieve(sourceid)
+      @last4 = card.last4
     end
 
     # POST /purchases 
@@ -106,10 +117,11 @@ class PurchasesController < ApplicationController
           end
           if @purchase.save_with_payment
             puts "7" ################################################
-            seller = User.find(@merchandise.user_id)
+            @seller = User.find(@merchandise.user_id)
+            @buyer = User.find(@purchase.user_id)
             render :receipt
             #redirect_to user_profile_path(seller.permalink)
-            flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + seller.name
+            flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + @seller.name
           else
             puts "8" ################################################
             redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
