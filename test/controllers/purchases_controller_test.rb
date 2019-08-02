@@ -2,14 +2,6 @@
 
 require 'test_helper'
 
-<<<<<<< HEAD
-class PurchasesControllerTest < ActionDispatch::IntegrationTest
-  test "should get receipt" do
-    get purchases_receipt_url
-    assert_response :success
-  end
-
-=======
 class PurchasesControllerTest < ActionController::TestCase
 
 	 include ActiveJob::TestHelper
@@ -265,5 +257,4 @@ class PurchasesControllerTest < ActionController::TestCase
     post :create, params: {purchase: @purchase_info}
       assert_enqueued_jobs(2)
   end
->>>>>>> 821635fab17814c3ec6a3a6f05b91ecb92d8e8ed
 end

@@ -13,29 +13,6 @@ class PurchasesController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @purchase }
     end
-<<<<<<< HEAD
-
-    def receipt
-      @purchase = Purchase.find(params[:id])
-      if (!@purchase.merchandise_id.nil?)
-        id_merch=@purchase.merchandise_id
-        @merch = Merchandise.find(params[:id_merch])
-        @buyer = User.find(@purchase.user_id)
-        @seller = User.find(@purchase.author_id)
-      end
-      customer = Stripe::Customer.retrieve(current_user.stripe_customer_token)
-      sourceid = customer.default_source
-      card = customer.sources.retrieve(sourceid)
-      @last4 = card.last4
-    end
-
-    # POST /purchases 
-    def create
-      @purchase = Purchase.new(purchase_params)
-      if user_signed_in?
-        puts "0" ############################
-        @purchase.user_id = current_user.id
-=======
   end
   # GET /purchases/new
   def new
@@ -53,7 +30,6 @@ class PurchasesController < ApplicationController
         @last4 = card.last4
         @expmonth = card.exp_month
         @expyear = card.exp_year
->>>>>>> 821635fab17814c3ec6a3a6f05b91ecb92d8e8ed
       end
     end
   end
@@ -109,24 +85,12 @@ class PurchasesController < ApplicationController
             data = open("#{@merchandise.merchmobi.to_s}")
             send_data data.read, filename: filename, disposition: 'attachment' 
           end
-<<<<<<< HEAD
-          if @purchase.save_with_payment
-            puts "7" ################################################
-            @seller = User.find(@merchandise.user_id)
-            @buyer = User.find(@purchase.user_id)
-            #redirect_to user_profile_path(seller.permalink)
-            flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + @seller.name
-          else
-            puts "8" ################################################
-            redirect_back fallback_location: request.referrer, :notice => "Your order did not go through. Try again."
-=======
           #epub
           if @merchandise.merchepub.present?
             filename = @merchandise.merchepub.to_s.split('/')
             filename = filename[filename.length-1]
             data = open("#{@merchandise.merchepub.to_s}") 
             send_data data.read, filename: filename, disposition: 'attachment' 
->>>>>>> 821635fab17814c3ec6a3a6f05b91ecb92d8e8ed
           end
         else
           puts "4" ################################################
