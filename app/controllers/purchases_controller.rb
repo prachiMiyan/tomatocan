@@ -119,7 +119,6 @@ class PurchasesController < ApplicationController
             puts "7" ################################################
             @seller = User.find(@merchandise.user_id)
             @buyer = User.find(@purchase.user_id)
-            render :receipt
             #redirect_to user_profile_path(seller.permalink)
             flash[:success] = "You have successfully completed the purchase! Thank you for being a patron of " + @seller.name
           else
