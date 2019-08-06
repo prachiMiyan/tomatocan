@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   match 'internship',     to: 'static_pages#internship', via: 'get'
   match '/merchandises/standardperks' => 'merchandises#standardperks', :as => :standardperks, via: 'get'
   match '/merchandises/new' => 'merchandises#new', :as => :createperk, via: 'get'
+  match '/purchases/receipt' => 'purchases#receipt', :as => :receipt, via: 'get'
 
   resources :merchandises
   resources :rsvpqs

@@ -140,6 +140,9 @@ class PurchasesController < ApplicationController
       end
     end
   end
+  # GET /purchases/receipt
+  def receipt
+  end
 
   private
   # Use callbacks to share common setup or constraints between actions.
