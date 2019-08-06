@@ -18,6 +18,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
+gem 'simple_calendar'
 
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
@@ -51,7 +52,6 @@ group :test, :development do
   gem 'apparition', '~> 0.2.0'
   gem 'capybara'
   gem 'capybara-screenshot', :group => :test
-  gem 'listen'
   gem 'rails-controller-testing'
 end
 

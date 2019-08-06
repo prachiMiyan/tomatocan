@@ -1294,6 +1294,7 @@ DEPENDENCIES
   railties (= 5.2.1)
   sass-rails (~> 5.0.7)
   selenium-webdriver
+  simple_calendar
   simplecov
   simplecov-lcov
   sqlite3 (~> 1.3.6)
