@@ -36,39 +36,43 @@ class PurchasesController < ApplicationController
     @seller                        = User.find(@merchandise.user_id)
     @purchase_mailer_hash[:seller] = @seller
 
-    case @merchandise.buttontype
-    when 'Donate'
-      assign_user_id
-      case @purchase.save_with_payment
-      when true
-        PurchaseMailer.with(@purchase_mailer_hash).donation_saved.deliver_later
-        PurchaseMailer.with(@purchase_mailer_hash).donation_received.deliver_later
-        flash[:notice] = 'You successfully donated $' + @merchandise.price.to_s + ' . Thank you for being a donor of ' + @seller.name
-        if request.host == 'crowdpublishtv.herokuapp.com'
-        end
-      when false
-        redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
-      end
-    when 'Buy'
-      assign_user_id
-      case @purchase.save_with_payment
-      when true
-        @purchase_mailer_hash[:merchandise] = @merchandise
-        PurchaseMailer.with(@purchase_mailer_hash).purchase_saved.deliver_later
-        PurchaseMailer.with(@purchase_mailer_hash).purchase_received.deliver_later
-        # filename_and_data = @merchandise.get_filename_and_data
-        # filename = filename_and_data[0]
-        # data = filename_and_data[1]
-        # send_data_to_buyer data, filename and return
-        # redirect_to user_profile_path(@seller.permalink)
-        redirect_to receipt_purchases_path
-      when false
-        redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
-      end
-    end
+    redirect_to purchase_receipt_path
+    # case @merchandise.buttontype
+    # when 'Donate'
+    #   assign_user_id
+    #   case @purchase.save_with_payment
+    #   when true
+    #     PurchaseMailer.with(@purchase_mailer_hash).donation_saved.deliver_later
+    #     PurchaseMailer.with(@purchase_mailer_hash).donation_received.deliver_later
+    #     flash[:notice] = 'You successfully donated $' + @merchandise.price.to_s + ' . Thank you for being a donor of ' + @seller.name
+    #     redirect_to user_profile_path(@seller.permalink)
+    #     #redirect_to purchase_receipt_path
+    #     # if request.host == 'crowdpublishtv.herokuapp.com'
+    #     # end
+    #   when false
+    #     redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
+    #   end
+    # when 'Buy'
+    #   assign_user_id
+    #   case @purchase.save_with_payment
+    #   when true
+    #     @purchase_mailer_hash[:merchandise] = @merchandise
+    #     PurchaseMailer.with(@purchase_mailer_hash).purchase_saved.deliver_later
+    #     PurchaseMailer.with(@purchase_mailer_hash).purchase_received.deliver_later
+    #     # filename_and_data = @merchandise.get_filename_and_data
+    #     # filename = filename_and_data[0]
+    #     # data = filename_and_data[1]
+    #     # send_data_to_buyer data, filename and return
+    #     # redirect_to user_profile_path(@seller.permalink)
+    #     redirect_to purchase_receipt_path
+    #   when false
+    #     redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
+    #   end
+    # end
   end
   # GET /purchases/receipt
   def receipt
+    @hello = "hello world"
   end
 
   private

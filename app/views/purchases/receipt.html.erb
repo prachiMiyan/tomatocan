@@ -1,26 +1,42 @@
 <div class="container">
     <body>
         <header class="header">
-            <h1>Receipt</h1>
+            <h1 style="padding-bottom: 15px; text-align:center; color:#800000">*User's* purchase summary</h1>
         </header>
-        <main class="mainPart">
-            <p>Payment confirmation for <%= @merchandise.name %> sold by <%= @seller.name%>_____________________________________________________</p>
-            <table>
+        <main class="main">
+            <div style="color:#800000; font-size:24px;">
+                <p style="text-align:center;"><%= Date.today%></p>
+                <p style="text-align:center;">Order ID: *number*</p>
+                <p style="text-align:center;">____________________________________________________________</p>
+            </div>
+            <table style="font-size:20px;">
                 <tr>
-                    <td>Date:   </td> 
-                    <td><%= Date.today %></td>
+                    <td>User name: </td>
+                    <td>*buyer_name* </td>
                 </tr>
                 <tr>
-                    <td>Customer name: </td>
-                    <td><%= @buyer.name %></td>
+                    <td>Item name: </td>
+                    <td>*merch_name* </td>
                 </tr>
                 <tr>
-                    <td>Card ending in: </td>
-                    <td></td>
+                    <td>Sold by: </td>
+                    <td>*seller_name* </td>
                 </tr>
                 <tr>
-                    <td>Price</td>
-                    <td>$<%= @purchase.pricesold %></td>
+                    <td>Payment method: </td> 
+                    <td>*last_4_digits_of_card_number* </td>
+                </tr>
+                <tr>
+                    <td>Price: </td>  
+                    <td>USD*price* </td>
+                </tr>
+                <tr>
+                    <td>Tax: </td>     
+                    <td>USD*price* </td>
+                </tr>
+                <tr>
+                    <td>Total: </td>
+                    <td>USD*price* </td>
                 </tr>
             </table>
         </main>
