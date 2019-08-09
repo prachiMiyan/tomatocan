@@ -19,6 +19,7 @@ gem 'omniauth-facebook'
 gem 'koala'
 gem 'will_paginate-bootstrap'
 gem 'simple_calendar'
+gem 'pry-byebug'
 
 gem 'pry'
 gem 'aws-sdk-s3' #aws-s3'
@@ -40,6 +41,7 @@ gem 'geocoder'
 gem 'friendly_id', '~> 5.0.0'
 #gem "paperclip", "~> 2.0"
 #gem 'rmagick'
+gem 'pry-rails'
 
 group :test, :development do
   gem 'minitest'

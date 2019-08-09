@@ -55,11 +55,12 @@ class PurchasesController < ApplicationController
         @purchase_mailer_hash[:merchandise] = @merchandise
         PurchaseMailer.with(@purchase_mailer_hash).purchase_saved.deliver_later
         PurchaseMailer.with(@purchase_mailer_hash).purchase_received.deliver_later
-        filename_and_data = @merchandise.get_filename_and_data
-        filename = filename_and_data[0]
-        data = filename_and_data[1]
-        send_data_to_buyer data, filename and return
-        redirect_to user_profile_path(@seller.permalink)
+        # filename_and_data = @merchandise.get_filename_and_data
+        # filename = filename_and_data[0]
+        # data = filename_and_data[1]
+        # send_data_to_buyer data, filename and return
+        # redirect_to user_profile_path(@seller.permalink)
+        redirect_to receipt_purchases_path
       when false
         redirect_back fallback_location: request.referrer, notice: 'Your order did not go through. Try again.'
       end
