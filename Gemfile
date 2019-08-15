@@ -12,7 +12,6 @@ gem 'devise'
 gem 'fog'   #, '1.6.0'
 gem 'unf' 
 gem 'carrierwave'
-gem 'stripe'
 gem 'oauth2'
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -52,7 +51,6 @@ group :test, :development do
   gem 'apparition', '~> 0.2.0'
   gem 'capybara'
   gem 'capybara-screenshot', :group => :test
-  gem 'rails-controller-testing'
 end
 
 group :production do
