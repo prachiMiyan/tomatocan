@@ -57,6 +57,7 @@ group :production do
      #rake db:create:all
      #rails s -e production
      gem 'sqlite3', '~> 1.3.6'
+     #gem 'pg'
   gem 'rails_12factor'
 end
 
